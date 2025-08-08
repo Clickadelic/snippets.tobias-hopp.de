@@ -14,15 +14,15 @@
 <body>
     <div class="container mt-3 rounded">
         <header class="flex justify-between">
-            <h1>Super Snippet</h1>
+            <h1><a href="<?= $_SERVER['PHP_SELF']; ?>">Snippets</a></h1>
             <nav>
                 <ul>
-                    <li><a href="./index.php" title="Home">Home</a></li>
-                    <li><a href="./index.php?action=register" title="Register">Register</a></li>
-                    <?php if(isset($_SESSION['user'])) {
-                        
+                    <?php
+                    
+                    if(isset($_SESSION['user'])) {
                         echo '<li><a href="./index.php?action=logout" title="Logout">Logout (' . $_SESSION['user']->getUsername() . ')</a></li>';
                     } else {
+                        echo '<li><a href="./index.php?action=register" title="Register">Register</a></li>';
                         echo '<li><a href="./index.php?action=login" title="Login">Login</a></li>';
                     }
                     ?>
