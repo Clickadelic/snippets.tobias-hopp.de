@@ -33,7 +33,7 @@
             <?php if(isset($tpl)) { include $tpl; } ?>
             
         </main>
-        <footer class="mt-3 text-center">
+        <footer class="mt-1 text-center">
             <p>powered by Tobias Hopp and PicoCSS.</p>
         </footer>
     </div>

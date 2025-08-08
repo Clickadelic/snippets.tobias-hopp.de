@@ -11,6 +11,10 @@ header:first-of-type {
     padding-top: 1rem;
 }
 
+footer:last-of-type p {
+    margin-bottom: 0;
+}
+
 
 .mt-3 {
     margin-top: 3rem;
