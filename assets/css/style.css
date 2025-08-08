@@ -7,6 +7,10 @@
     justify-content: space-between;
 }
 
+header:first-of-type {
+    padding-top: 1rem;
+}
+
 
 .mt-3 {
     margin-top: 3rem;
