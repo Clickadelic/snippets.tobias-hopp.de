@@ -1,2 +1,2 @@
-<h1>Home</h1>
-<p>Home Inhalt</p>
+<h2>Willkommen zurück bei den Snippets</h2>
+<p>Eine kleine Snippetdatenbank für Webentwickler.</p>
