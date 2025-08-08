@@ -13,6 +13,7 @@ header:first-of-type {
 
 form {
     max-width: 450px;
+    margin: auto;
 }
 
 footer:last-of-type p {
