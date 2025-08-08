@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Snippet</title>
+    <link rel="stylesheet"  href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.colors.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="./assets/js/main.js"></script>
+</head>
+<body>
+    <div class="container mt-3 rounded">
+        <header class="flex justify-between">
+            <h1>Super Snippet</h1>
+            <nav>
+                <ul>
+                    <li><a href="./index.php" title="Home">Home</a></li>
+                    <li><a href="./index.php?action=register" title="Register">Register</a></li>
+                    <?php if(isset($_SESSION['user'])) {
+                        
+                        echo '<li><a href="./index.php?action=logout" title="Logout">Logout (' . $_SESSION['user']->getUsername() . ')</a></li>';
+                    } else {
+                        echo '<li><a href="./index.php?action=login" title="Login">Login</a></li>';
+                    }
+                    ?>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <?php if(isset($tpl)) { include $tpl; } ?>
+            
+        </main>
+        <footer class="mt-3">
+            <p>All rights reserved - &copy; Super Snippet</p>
+        </footer>
+    </div>
+    <div id="modal">
+        <article>
+            <header>
+                <button aria-label="Close" rel="prev"></button>
+                <p>
+                    <strong>🗓️ Thank You for Registering!</strong>
+                </p>
+            </header>
+            <p>We're excited to have you join us for our upcoming event. Please arrive at the museum on time to check in and get started.</p>
+            
+        </article>
+    </div>
+</body>
+</html>
