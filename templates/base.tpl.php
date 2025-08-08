@@ -33,7 +33,7 @@
             <?php if(isset($tpl)) { include $tpl; } ?>
             
         </main>
-        <footer class="mt-3">
+        <footer class="mt-3 text-center">
             <p>All rights reserved - &copy; Super Snippet</p>
         </footer>
     </div>
