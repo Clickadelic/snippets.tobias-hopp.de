@@ -1,9 +1,12 @@
-body {
+
+
+#app{
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
+
 
 .mt-3 {
     margin-top: 3rem;

@@ -12,7 +12,7 @@
     <script src="./assets/js/main.js"></script>
 </head>
 <body>
-    <div class="container mt-3 rounded">
+    <div class="container mt-3 rounded" id="app">
         <header class="flex justify-between">
             <h1><a href="<?= $_SERVER['PHP_SELF']; ?>">Snippets</a></h1>
             <nav>
