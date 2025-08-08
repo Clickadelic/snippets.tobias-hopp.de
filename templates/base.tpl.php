@@ -37,7 +37,7 @@
             <p>All rights reserved - &copy; Super Snippet</p>
         </footer>
     </div>
-    <div id="modal">
+    <!-- <div id="modal">
         <article>
             <header>
                 <button aria-label="Close" rel="prev"></button>
@@ -48,6 +48,6 @@
             <p>We're excited to have you join us for our upcoming event. Please arrive at the museum on time to check in and get started.</p>
             
         </article>
-    </div>
+    </div> -->
 </body>
 </html>
