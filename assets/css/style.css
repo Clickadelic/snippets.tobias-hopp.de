@@ -11,6 +11,10 @@ header:first-of-type {
     padding-top: 1rem;
 }
 
+form {
+    max-width: 450px;
+}
+
 footer:last-of-type p {
     margin-bottom: 0;
 }
