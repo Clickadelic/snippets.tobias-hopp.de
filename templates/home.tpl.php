@@ -4,6 +4,7 @@ if(!isset($_SESSION['user'])) { ?>
     <!-- Logged out -->
     <h2>Willkommen zurück bei den Snippets</h2>
     <p>Eine kleine Snippetdatenbank für Webentwickler.</p>
+    <?php include __DIR__ .'/templates/forms/login-form.tpl.php'; ?>
 <?php } else { ?>
     <!-- Logged in -->
     <h2>Willkommen zurück, <?= $_SESSION['user']->getUsername(); ?>!</h2>
