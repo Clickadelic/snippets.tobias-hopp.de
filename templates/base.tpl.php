@@ -12,7 +12,7 @@
     <script src="./assets/js/main.js"></script>
 </head>
 <body>
-    <div class="container mt-3 rounded" id="app">
+    <div class="container rounded" id="app">
         <header class="flex justify-between">
             <h1><a href="<?= $_SERVER['PHP_SELF']; ?>">Snippets</a></h1>
             <nav>
@@ -34,7 +34,7 @@
             
         </main>
         <footer class="mt-3 text-center">
-            <p>All rights reserved - &copy; Super Snippet</p>
+            <p>powered by Tobias Hopp and PicoCSS.</p>
         </footer>
     </div>
     <!-- <div id="modal">
