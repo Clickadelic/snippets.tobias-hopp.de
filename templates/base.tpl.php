@@ -1,10 +1,3 @@
-<?php
-
-if(isset($_GET[""]) && $_GET[""] == ""){
-
-}
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
