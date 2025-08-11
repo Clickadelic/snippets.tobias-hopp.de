@@ -1,7 +1,7 @@
 <?php
 
 
-class User {
+class User extends EntityBase {
     private int $id = 0;
     private string $username;
     private string $email;
@@ -12,38 +12,6 @@ class User {
 
     private string $deletedAt;
     private bool $agbok;
-
-
-    // public function __construct(int $id, string $username, string $email, string $password, bool $agbok = false) {
-    //     $this->id = $id;
-    //     $this->username = $username;
-    //     $this->email = $email;
-    //     $this->password = $password;
-    //     // $this->createdAt = $createdAt;
-    //     // $this->updatedAt = $updatedAt;
-    //     $this->agbok = $agbok;
-    // }
-    
-    /**
-     * Fill the current object with values from an array
-     *
-     * @param array $data
-     * @return void
-     * 
-     * Die arrayToObject-Methode ist eine selbstdefinierte Methode,
-     * die ein Array als Parameter erwartet und das Objekt selbstständig mithilfe des Arrays befüllt
-     */
-    public function arrayToObject(array $datas) {
-        // echo '<pre>';
-        // var_dump($datas);
-        // echo '</pre>';
-        foreach ($datas as $key => $value) {
-            $setter = 'set' . ucfirst($key);
-            if (method_exists($this, $setter)) {
-                $this->$setter($value);
-            }
-        }
-    }
 
     public function setHashedPassword(string $password) {
         $this->password = password_hash($password, PASSWORD_DEFAULT);
