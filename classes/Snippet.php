@@ -2,17 +2,12 @@
 
 
 class Snippet extends EntityBase {
-    private int $id = 0;
+
     private string $title;
     private string $description;
     private string $code;
     private string $language;
     private string $tags;
-    private DateTime $createdAt;
-    private DateTime $updatedAt;
-    private DateTime $deleted;
-
-    
 
     /**
      * Get the value of id
@@ -158,22 +153,5 @@ class Snippet extends EntityBase {
         return $this;
     }
 
-    /**
-     * Get the value of deleted
-     */
-    public function getDeleted(): DateTime
-    {
-        return $this->deleted;
-    }
-
-    /**
-     * Set the value of deleted
-     */
-    public function setDeleted(DateTime $deleted): self
-    {
-        $this->deleted = $deleted;
-
-        return $this;
-    }
 }
 

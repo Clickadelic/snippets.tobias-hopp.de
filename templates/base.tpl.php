@@ -1,4 +1,10 @@
+<?php
 
+if(isset($_GET[""]) && $_GET[""] == ""){
+
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,23 +37,10 @@
         </header>
         <main>
             <?php if(isset($tpl)) { include $tpl; } ?>
-            
         </main>
-        <footer class="mt-1 text-center">
-            <p>powered by Tobias Hopp and PicoCSS.</p>
+        <footer class="my-1 text-center">
+            <p class="text-sm">Powered by PicoCSS.</p>
         </footer>
     </div>
-    <!-- <div id="modal">
-        <article>
-            <header>
-                <button aria-label="Close" rel="prev"></button>
-                <p>
-                    <strong>🗓️ Thank You for Registering!</strong>
-                </p>
-            </header>
-            <p>We're excited to have you join us for our upcoming event. Please arrive at the museum on time to check in and get started.</p>
-            
-        </article>
-    </div> -->
 </body>
 </html>
