@@ -2,15 +2,15 @@
 
 
 class User extends EntityBase {
-    private int $id = 0;
+    // private int $id = 0;
     private string $username;
     private string $email;
     private string $password;
 
-    private DateTime $createdAt;
-    private DateTime $updatedAt;
+    // private DateTime $createdAt;
+    // private DateTime $updatedAt;
 
-    private string $deletedAt;
+    // private string $deletedAt;
     private bool $agbok;
 
     public function setHashedPassword(string $password) {
