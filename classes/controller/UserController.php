@@ -42,15 +42,17 @@ class UserController {
         $stmt = $this->dbh->prepare($sql);
         $stmt->execute([$username]);
         $result = $stmt->fetch();
-
+        // echo '<pre>';
+        //     var_dump($result);
+        // echo '</pre>';
         $user = null;
         if($result) {
             $user = new User();
             $user->arrayToObject($result);
-            $user->setId($result["id"]);
-            $user->setEmail($result["email"]);
-            $user->setPassword($result["password"]);
         }
+        // echo '<pre>';
+        //     var_dump($user);
+        // echo '</pre>';
         return $user;
     }
 

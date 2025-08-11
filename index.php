@@ -28,7 +28,7 @@ switch ($action) {
         // in $user ist nun ein User Objekt mit den ganzen Daten aus der Datenbank
         // oder ein Null, falls kein User mit dem benutzernamen gefunden wurde
         $user = (new UserController($dbh))->findByUsername($post['username']);
-        if(!$user != null && password_verify($post['password'], $user->getPassword())) {
+        if($user != null && password_verify($post['password'], $user->getPassword())) {
             $_SESSION['user'] = $user;
             header('Location: index.php');
         } else {
@@ -50,6 +50,14 @@ switch ($action) {
     case 'logout':
         session_destroy();
         header('Location: index.php?action=logged-out');
+        break;
+
+    case 'newSnippet':
+         $tpl = './templates/forms/snippet-form.tpl.php';
+        break;
+    
+    case 'saveSnippet':
+         $tpl = './templates/forms/snippet-form.tpl.php';
         break;
 
     default:

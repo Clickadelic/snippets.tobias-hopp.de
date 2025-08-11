@@ -9,6 +9,6 @@ if(!isset($_SESSION['user'])) { ?>
     <!-- Logged in -->
     <h2>Willkommen zurück, <?= $_SESSION['user']->getUsername(); ?>!</h2>
     <p>Wir freuen uns, dass du wieder da bist.</p>
-    <a href="<?php echo $_SERVER['PHP_SELF']; ?>?action=new-snippet" class="btn">Neues Snippet erstellen</a>
-    <h3>Liste mit Snippets</h3>
+    <a href="<?php echo $_SERVER['PHP_SELF']; ?>?action=newSnippet" class="btn">Neues Snippet erstellen</a>
+    
 <?php } ?>
