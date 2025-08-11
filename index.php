@@ -28,16 +28,13 @@ switch ($action) {
         // in $user ist nun ein User Objekt mit den ganzen Daten aus der Datenbank
         // oder ein Null, falls kein User mit dem benutzernamen gefunden wurde
         $user = (new UserController($dbh))->findByUsername($post['username']);
-            if(!$user != null && password_verify($post['password'], $user->getPassword())) {
-                $_SESSION['user'] = $user;
-                header('Location: index.php');
-            } else {
-                header('Location: index.php?action=login?error=1');
-                die();
-            }
+        if(!$user != null && password_verify($post['password'], $user->getPassword())) {
+            $_SESSION['user'] = $user;
+            header('Location: index.php');
+        } else {
+            header('Location: index.php?action=login?error=1');
             die();
         }
-
         break;
     
     case 'regUser':

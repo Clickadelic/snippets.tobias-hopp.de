@@ -50,7 +50,6 @@ class UserController {
             $user->setId($result["id"]);
             $user->setEmail($result["email"]);
             $user->setPassword($result["password"]);
-            $user->setAgbok($result["agbOk"]);
         }
         return $user;
     }
