@@ -43,9 +43,15 @@ class UserController {
         $stmt->execute([$username]);
         $result = $stmt->fetch();
 
-        $user = new User();
-        $user->arrayToObject($result);
-
+        $user = null;
+        if($result) {
+            $user = new User();
+            $user->arrayToObject($result);
+            $user->setId($result["id"]);
+            $user->setEmail($result["email"]);
+            $user->setPassword($result["password"]);
+            $user->setAgbok($result["agbOk"]);
+        }
         return $user;
     }
 
