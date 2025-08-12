@@ -13,6 +13,16 @@ header:first-of-type {
     padding-top: 1rem;
 }
 
+a:link,
+a:visited {
+    text-decoration: none;
+}
+
+a:hover,
+a:focus {
+    color: #ccc;
+}
+
 form {
     max-width: 600px;
     margin: auto;

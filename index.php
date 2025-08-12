@@ -74,7 +74,8 @@ switch ($action) {
         $user->arrayToObject($post);
         $user->setHashedPassword($post['password']);
         $uc = new UserController($dbh);
-        $uc->insert($user);
+        $uc->save($user);
+        header('Location: index.php?action=login');
         break;
 
     // === Logout User ===
