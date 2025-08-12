@@ -7,7 +7,13 @@ class SnippetController {
         $this->dbh = $dbh;
     }
  
-    // CRUD: Create - Read - Update - Delete
+    /**
+     * Inserts a snippet into the database
+     *
+     * @param Snippet $snippet
+     *
+     * @return void
+     */
     public function insert($snippet) {
         // 1. SQL definieren
         $sql = "INSERT INTO snippets (title, description, code, language, tags, uid) VALUES (?,?,?,?,?,?)";
@@ -23,6 +29,12 @@ class SnippetController {
             $_SESSION['user']->getId()
         ]);
     }
+    
+    /**
+     * Finds all snippets in the database
+     *
+     * @return Snippet[]
+     */
     public function findAll() {
         // $sql = "SELECT s.*, u.username, u.email FROM snippets s JOIN users u ON u.id = s.uid";
         $sql = 'SELECT * from snippets';
@@ -41,6 +53,13 @@ class SnippetController {
         return $snippets;
     }
 
+    /**
+     * Finds a snippet by its ID
+     *
+     * @param int $id
+     *
+     * @return Snippet
+     */
     public function findSnippetById($id) {
         $sql = 'SELECT * from snippets WHERE id = ? AND uid = ? LIMIT 1';
         $stmt = $this->dbh->prepare($sql);
@@ -60,13 +79,14 @@ class SnippetController {
     }
  
     /**
-     * Holt alle Snippets von einem user aus der Datenbank
-     * und zwar vom gerade eingeloggten Benutzer.. wenn wir nur die ID kennen würden
-     * und die Daten evtl. nett in der home.tpl.php anzeigen.
+     * Find snippets by user ID
+     *
+     * @param int $id
+     *
+     * @return Snippet[]
      */
     public function findByUser(int $id){
-        //$sql = "SELECT s.*, u.username, u.email FROM snippets s JOIN users u ON u.id = s.uid";
-        $sql = 'SELECT * from snippets WHERE uid = ? AND uid = ?';
+        $sql = 'SELECT * from snippets WHERE uid = ? ';
         $stmt = $this->dbh->prepare($sql);
         $stmt->execute([$id, $_SESSION['user']->getId()]);
         $results = $stmt->fetchAll();
@@ -87,6 +107,11 @@ class SnippetController {
 
     }
 
+    /**
+     * Deletes a snippet by its ID, but only if the snippet belongs to the current user
+     *
+     * @param int $id
+     */
     public function delete(int $id) {
         $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
         if($id !== false && $id !==  null) {

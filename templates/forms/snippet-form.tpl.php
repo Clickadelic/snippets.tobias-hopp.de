@@ -9,10 +9,6 @@
         <input type="text" name="description" placeholder="Beschreibung" id="description">
     </div>
     <div>
-        <label for="code">Code</label>    
-        <textarea name="code" rows="10" placeholder="Code" id="code"></textarea>
-    </div>
-    <div>
         <label for="language">Language</label>
         <select name="language" id="language">
             <option value="PHP">PHP</option>
@@ -29,6 +25,11 @@
         <label for="tags">Tags</label>
         <input type="text" name="tags" id="tags" placeholder="login, userverwaltung, singleton...">
     </div>
+    <div>
+        <label for="code">Code</label>    
+        <textarea name="code" rows="10" placeholder="Code" id="code"></textarea>
+    </div>
+    
     <div>
         <button type="submit">Senden</button>
     </div>

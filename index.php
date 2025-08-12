@@ -20,10 +20,6 @@ switch ($action) {
         } else {
             $snippets = [];
         }
-        
-        // echo '<pre>';
-        // var_dump($results);
-        // echo '</pre>';
 
         $tpl = 'home.tpl.php';
         break;

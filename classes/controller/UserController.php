@@ -2,13 +2,23 @@
 class UserController {
     private PDO $dbh;
  
+    /**
+     * Constructor
+     *
+     * @param PDO $dbh
+     */
     public function __construct(PDO $dbh) {
         $this->dbh = $dbh;
     }
  
+    
     /**
-     * Kontrolliert anhand der ID vom User
-     * ob es ein Update oder Insert aufrufen soll
+     * Saves a user to the database. If the user already exists, it updates the user.
+     * Otherwise, it inserts a new user.
+     *
+     * @param User $user The user to be saved.
+     *
+     * @return void
      */
     public function save(User $user) {
         if($user->getId() > 0) {
@@ -18,6 +28,13 @@ class UserController {
         }
     }
  
+    /**
+     * Inserts a user into the database
+     *
+     * @param User $user The user to be inserted
+     *
+     * @return void
+     */
     public function insert(User $user) {
         $sql = "INSERT INTO users (username, email, password, agbOk) VALUES (?,?,?,?)";
         $stmt = $this->dbh->prepare($sql);
@@ -33,6 +50,13 @@ class UserController {
  
     public function findAll() {}
  
+    /**
+     * Finds a user by its ID
+     *
+     * @param int $id
+     *
+     * @return User|null
+     */
     public function findById(int $id) {
         $sql = "SELECT * FROM users WHERE id = ?";
         $stmt = $this->dbh->prepare($sql);
@@ -47,6 +71,13 @@ class UserController {
         return $user;
     }
  
+    /**
+     * Finds a user by its username
+     *
+     * @param string $username The username to search for
+     *
+     * @return User|null The user object if found, null otherwise
+     */
     public function findByUsername(string $username)  {
         $sql = "SELECT * FROM users WHERE username = ?";
         $stmt = $this->dbh->prepare($sql);

@@ -7,20 +7,18 @@ class EntityBase
     protected $updatedAt;
     protected $deletedAt;
 
-    
     /**
-     * Fill the current object with values from an array
-     *
-     * @param array $data
-     * @return void
-     * 
      * Die arrayToObject-Methode ist eine selbstdefinierte Methode,
      * die ein Array als Parameter erwartet und das Objekt selbstständig mithilfe des Arrays befüllt
+     *
+     * Fill the current object with values from an array
+     *
+     * @param array $datas
+     * @return void
+     * 
+     * The arrayToObject-method is a selfdefined method, which expects an array as parameter and fills the object by itself with the array
      */
     public function arrayToObject(array $datas) {
-        // echo '<pre>';
-        // var_dump($datas);
-        // echo '</pre>';
         foreach ($datas as $key => $value) {
             $setter = 'set' . ucfirst($key);
             if (method_exists($this, $setter)) {
