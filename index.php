@@ -32,9 +32,35 @@ switch ($action) {
     case 'newSnippet':
         $tpl = './templates/forms/snippet-form.tpl.php';
         break;
-    
+
     // === Save Snippet ===
     case 'saveSnippet':
+        $post = filter_input_array(INPUT_POST);
+        $snippet = new Snippet();
+        $snippet->arrayToObject($post);
+        $sc = new SnippetController($dbh);
+        $sc->insert($snippet);
+        break;
+
+    // === View Snippet ===
+    case 'viewSnippet':
+        $sc = new SnippetController($dbh);
+        $snippet = $sc->findSnippetById($get['id']);
+        // echo '<pre>';
+        // var_dump($snippet);
+        // echo '</pre>';
+        $tpl = "templates/view-snippet.tpl.php";
+        break;
+
+    // === Save Snippet ===
+    case 'deleteSnippet':
+        
+        $sc = new SnippetController($dbh);
+        $sc->insert($snippet);
+        break;
+
+    // === Edit Snippet ===
+    case 'editSnippet':
         $post = filter_input_array(INPUT_POST);
         $snippet = new Snippet();
         $snippet->arrayToObject($post);

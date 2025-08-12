@@ -1,15 +1,19 @@
 <?php
 
-
 class Snippet extends EntityBase {
 
     private string $title;
     private string $description;
+    private string $language;
     private string $code;
     private string $tags;
-    private string $language;
 
     private User $user;
+
+    public function getCreatedAtFormatted($format = 'y.m.d. H:m.s') {
+        $date = new DateTime($this->createdAt);
+        return $date->format($format);
+    }
 
     /**
      * Get the value of id
