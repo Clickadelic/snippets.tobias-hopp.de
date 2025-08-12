@@ -86,9 +86,9 @@ class SnippetController {
      * @return Snippet[]
      */
     public function findByUser(int $id){
-        $sql = 'SELECT * from snippets WHERE uid = ? ';
+        $sql = 'SELECT * from snippets WHERE uid = ?';
         $stmt = $this->dbh->prepare($sql);
-        $stmt->execute([$id, $_SESSION['user']->getId()]);
+        $stmt->execute([$id]);
         $results = $stmt->fetchAll();
         $uc = new UserController($this->dbh);
  
