@@ -1,52 +1,74 @@
 <?php
 
-use Dom\Entity;
-
 class SnippetController {
     private PDO $dbh;
-    public function __construct(PDO $dbh) {
+ 
+ 
+        public function __construct(PDO $dbh) {
         $this->dbh = $dbh;
     }
+ 
+ 
+    // CRUD: Create - Read - Update - Delete
+ 
     public function insert($snippet) {
-        $sql = "INSERT INTO snippets (title, description, language, code, tags, uId) VALUES (?, ?, ?, ?, ?, ?)";
+        // 1. SQL definieren
+        $sql = "INSERT INTO snippets (title, description, code, language, tags, uid) VALUES (?,?,?,?,?,?)";
+        // 2. SQL vorbereiten
         $stmt = $this->dbh->prepare($sql);
-        $stmt->execute(
-            [
-                $snippet->getTitle(),
-                $snippet->getDescription(),
-                $snippet->getLanguage(),
-                $snippet->getCode(),
-                $snippet->getTags(),
-                $_SESSION['user']->getId()
-            ]
-        );
+        // 3. SQL an die Datenbank schicken
+        $stmt->execute([
+            $snippet->getTitle(),
+            $snippet->getDescription(),
+            $snippet->getCode(),
+            $snippet->getLanguage(),
+            $snippet->getTags(),
+            $_SESSION['user']->getId()
+        ]);
     }
-    public function update() {
-
-    
-    }
-
-    public function delete() {
-
-    }
-
     public function findAll() {
-        $sql = "SELECT s.*, u.username, u.email FROM snippets s LEFT JOIN users u ON s.uId = u.id";
+        //$sql = "SELECT s.*, u.username, u.email FROM snippets s JOIN users u ON u.id = s.uid";
+        $sql = 'SELECT * from snippets';
         $stmt = $this->dbh->query($sql);
-        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $results;
+        $results = $stmt->fetchAll();
+        $uc = new UserController($this->dbh);
+ 
+        $snippets = [];
+        foreach($results as $result) {
+            $snippet = new Snippet();
+            $snippet->arrayToObject($result);
+            $snippets[] = $snippet; // fügt das Snippet zum Array hinzu
+            $user = $uc->findById($result['uid']);
+            $snippet->setUser($user);
+        }
+        return $snippets;
     }
-    public function findByUser($id) {
-        $sql = "SELECT s.*, u.username FROM snippets s LEFT JOIN users u ON s.uId = u.id WHERE s.uId = $id";
-        $stmt = $this->dbh->query($sql);
-        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $results;
+ 
+    /**
+     * Holt alle Snippts von einem user aus der Datenbank
+     * und zwar vom gerade eingeloggten Benutzer.. wenn wir nur die ID kennen würden
+     * und die Daten evtl. nett in der home.tpl.php anzeigen.
+     */
+    public function findByUser(int $id){
+ //$sql = "SELECT s.*, u.username, u.email FROM snippets s JOIN users u ON u.id = s.uid";
+        $sql = 'SELECT * from snippets WHERE uid = ?';
+        $stmt = $this->dbh->prepare($sql);
+        $stmt->execute([$id]);
+        $results = $stmt->fetchAll();
+        $uc = new UserController($this->dbh);
+ 
+        $snippets = [];
+        foreach($results as $result) {
+            $snippet = new Snippet();
+            $snippet->arrayToObject($result);
+            $snippets[] = $snippet; // fügt das Snippet zum Array hinzu
+            $user = $uc->findById($result['uid']);
+            $snippet->setUser($user);
+        }
+        return $snippets;
+ 
     }
-
-    public function getCode() {
-        $sql = "SELECT * FROM snippets WHERE id = ?";
-        $stmt = $this->dbh->query($sql);
-        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $results;
-    }
+    public function update() {}
+    public function delete() {}
+   
 }

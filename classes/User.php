@@ -147,7 +147,7 @@ class User extends EntityBase {
     /**
      * Get the value of agbok
      */
-    public function isAgbok(): bool
+    public function getAgbok(): bool
     {
         return $this->agbok;
     }

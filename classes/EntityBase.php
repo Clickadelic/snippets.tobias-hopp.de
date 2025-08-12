@@ -7,6 +7,7 @@ class EntityBase
     protected $updatedAt;
     protected $deletedAt;
 
+    
     /**
      * Fill the current object with values from an array
      *

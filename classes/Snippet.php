@@ -6,8 +6,10 @@ class Snippet extends EntityBase {
     private string $title;
     private string $description;
     private string $code;
-    private string $language;
     private string $tags;
+    private string $language;
+
+    private User $user;
 
     /**
      * Get the value of id
@@ -120,7 +122,7 @@ class Snippet extends EntityBase {
     /**
      * Get the value of createdAt
      */
-    public function getCreatedAt(): DateTime
+    public function getCreatedAt()
     {
         return $this->createdAt;
     }
@@ -128,7 +130,7 @@ class Snippet extends EntityBase {
     /**
      * Set the value of createdAt
      */
-    public function setCreatedAt(DateTime $createdAt): self
+    public function setCreatedAt($createdAt): self
     {
         $this->createdAt = $createdAt;
 
@@ -138,7 +140,7 @@ class Snippet extends EntityBase {
     /**
      * Get the value of updatedAt
      */
-    public function getUpdatedAt(): DateTime
+    public function getUpdatedAt()
     {
         return $this->updatedAt;
     }
@@ -146,12 +148,29 @@ class Snippet extends EntityBase {
     /**
      * Set the value of updatedAt
      */
-    public function setUpdatedAt(DateTime $updatedAt): self
+    public function setUpdatedAt($updatedAt): self
     {
-        $this->updatedAt = $updatedAt;
+        $this->updatedAt = $updatedAt ?? '';
 
         return $this;
     }
 
+    /**
+     * Get the value of user
+     */
+    public function getUser(): User
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set the value of user
+     */
+    public function setUser(User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
 }
 

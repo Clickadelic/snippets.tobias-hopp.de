@@ -15,8 +15,12 @@ switch ($action) {
     // === Home ===
     case 'home':
         $sc = new SnippetController($dbh);
-        $results = $sc->findAll();
-
+        if(isset($_SESSION['user'])){
+            $snippets = $sc->findByUser($_SESSION['user']->getId());
+        } else {
+            $snippets = [];
+        }
+        
         // echo '<pre>';
         // var_dump($results);
         // echo '</pre>';

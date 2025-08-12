@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,6 +30,7 @@
                 </ul>
             </nav>
         </header>
+        <?php if(isset($_GET['message'])) { echo '<div class="alert alert-warning"><p class="alert-message">' . $message . '</p></div>'; } ?>
         <main>
             <?php if(isset($tpl)) { include $tpl; } ?>
         </main>
