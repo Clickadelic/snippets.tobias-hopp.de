@@ -1,5 +1,6 @@
 :root {
-    $primary: #0979e9ff;
+    --primary: #0979e9ff;
+    --success: #198754;
 }
 
 #app{
@@ -11,6 +12,17 @@
 
 header:first-of-type {
     padding-top: 1rem;
+}
+
+.alert {
+    padding: 1rem;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.alert-success {
+    background-color: var(--success);
+    border-color: var(--success);
 }
 
 a:link,
@@ -70,6 +82,10 @@ footer:last-of-type p {
 .mx-auto {
     margin-left: auto;
     margin-right: auto;
+}
+
+.mb-0 {
+    margin-bottom: 0;
 }
 
 .mb-1 {

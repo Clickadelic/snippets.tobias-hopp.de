@@ -30,7 +30,24 @@
                 </ul>
             </nav>
         </header>
-        <?php if(isset($_GET['message'])) { echo '<div class="alert alert-warning"><p class="alert-message">' . $_GET['message'] . '</p></div>'; } ?>
+        <?php
+        if(isset($_GET['message'])){
+            switch($_GET['message']) {
+                case 'snippet-created':
+                    echo '<div class="alert alert-success"><p class="alert-message mb-0">Snippet erfolgreich erstellt!</p></div>';
+                break;
+                case 'snippet-updated':
+                    echo '<div class="alert alert-success"><p class="alert-message mb-0">Snippet erfolgreich aktualisiert!</p></div>';
+                break;
+                case 'snippet-deleted':
+                    echo '<div class="alert alert-success"><p class="alert-message mb-0">Snippet erfolgreich gelöscht!</p></div>';
+                break;
+                case 'login-error':
+                    echo '<div class="alert alert-warning"><p class="alert-message mb-0">Login fehlgeschlagen!</p></div>';
+                break;
+            }
+        }
+        ?>
         <main>
             <?php if(isset($tpl)) { include $tpl; } ?>
         </main>

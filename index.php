@@ -36,10 +36,7 @@ switch ($action) {
         $snippet->arrayToObject($post); // Formulardaten in das Objekt schreiben
         $sc = new SnippetController($dbh); // SnippetController erzeugen
         $sc->insert($snippet); // Snippet in die Datenbank schreiben
-        // Hat geklappt oder Weiterleitung
-        // echo '<pre>';
-        // var_dump($snippet);
-        // echo '</pre>';
+        header("Location: index.php?message=snippet-created");
         break;
 
     // === View Snippet ===
