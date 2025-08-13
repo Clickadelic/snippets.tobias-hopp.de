@@ -40,16 +40,7 @@ class SnippetController {
         $sql = 'SELECT * from snippets';
         $stmt = $this->dbh->query($sql);
         $results = $stmt->fetchAll();
-        $uc = new UserController($this->dbh);
- 
-        $snippets = [];
-        foreach($results as $result) {
-            $snippet = new Snippet();
-            $snippet->arrayToObject($result);
-            $snippets[] = $snippet; // fügt das Snippet zum Array hinzu
-            $user = $uc->findById($result['uid']);
-            $snippet->setUser($user);
-        }
+        $snippets = $this->mapSnippetUser($results);
         return $snippets;
     }
 
@@ -64,17 +55,9 @@ class SnippetController {
         $sql = 'SELECT * from snippets WHERE id = ? AND uid = ? LIMIT 1';
         $stmt = $this->dbh->prepare($sql);
         $stmt->execute([$id, $_SESSION['user']->getId()]);
-        $snippet = $stmt->fetchAll();
-        $uc = new UserController($this->dbh);
+        $result = $stmt->fetchAll();
 
-        $snippets = [];
-        foreach($snippet as $result) {
-            $snippet = new Snippet();
-            $snippet->arrayToObject($result);
-            $snippets[] = $snippet; // fügt das Snippet zum Array hinzu
-            $user = $uc->findById($result['uid']);
-            $snippet->setUser($user);
-        }
+        $snippets = $this->mapSnippetUser($result);
         return $snippets[0];
     }
  
@@ -90,16 +73,7 @@ class SnippetController {
         $stmt = $this->dbh->prepare($sql);
         $stmt->execute([$id]);
         $results = $stmt->fetchAll();
-        $uc = new UserController($this->dbh);
- 
-        $snippets = [];
-        foreach($results as $result) {
-            $snippet = new Snippet();
-            $snippet->arrayToObject($result);
-            $snippets[] = $snippet; // fügt das Snippet zum Array hinzu
-            $user = $uc->findById($result['uid']);
-            $snippet->setUser($user);
-        }
+        $snippets = $this->mapSnippetUser($results);
         return $snippets;
  
     }
@@ -151,6 +125,11 @@ class SnippetController {
             ":search"=> '%'. $search.'%'
         ]);
         $results = $stmt->fetchAll();
+        $snippets = $this->mapSnippetUser($results);
+        return $snippets;
+    }
+
+    public function mapSnippetUser($results){
         $uc = new UserController($this->dbh);
  
         $snippets = [];
@@ -163,5 +142,4 @@ class SnippetController {
         }
         return $snippets;
     }
-
 }
