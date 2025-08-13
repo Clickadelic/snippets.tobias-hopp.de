@@ -103,8 +103,18 @@ class SnippetController {
         return $snippets;
  
     }
-    public function update() {
-        
+    public function update(Snippet $snippet) {
+        $sql = 'UPDATE snippets SET title = ?, description = ?, code = ?, language = ?, tags = ? WHERE id = ? AND uid = ? LIMIT 1';
+        $stmt = $this->dbh->prepare($sql);
+        $stmt->execute([
+            $snippet->getId(),
+            $snippet->getTitle(),
+            $snippet->getDescription(),
+            $snippet->getLanguage(),
+            $snippet->getTags(),
+            $snippet->getCode(),
+            $_SESSION['user']->getId()
+        ]);
     }
 
     /**

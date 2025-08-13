@@ -31,11 +31,11 @@ switch ($action) {
 
     // === Save Snippet ===
     case 'save-snippet':
-        $post = filter_input_array(INPUT_POST);
-        $snippet = new Snippet();
-        $snippet->arrayToObject($post);
-        $sc = new SnippetController($dbh);
-        $sc->insert($snippet);
+        $post = filter_input_array(INPUT_POST); // Formulardaten abgreifen
+        $snippet = new Snippet(); // Neues Snippet Objekt erzeugen
+        $snippet->arrayToObject($post); // Formulardaten in das Objekt schreiben
+        $sc = new SnippetController($dbh); // SnippetController erzeugen
+        $sc->insert($snippet); // Snippet in die Datenbank schreiben
         // Hat geklappt oder Weiterleitung
         // echo '<pre>';
         // var_dump($snippet);

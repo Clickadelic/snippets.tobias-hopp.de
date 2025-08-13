@@ -2,7 +2,7 @@
 
 class EntityBase
 {
-    protected $id;
+    protected $id = 0;
     protected $createdAt;
     protected $updatedAt;
     protected $deletedAt;
