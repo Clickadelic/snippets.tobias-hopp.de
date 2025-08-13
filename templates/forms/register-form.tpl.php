@@ -1,4 +1,4 @@
-<form action="index.php?action=regUser" method="POST">
+<form action="index.php?action=register-user" method="POST">
     <input type="text" name="username" placeholder="Benutzername">
     <input type="email" name="email" placeholder="E-Mail">
     <input type="password" name="password" placeholder="Passwort">

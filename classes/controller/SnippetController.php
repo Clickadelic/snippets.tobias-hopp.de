@@ -104,7 +104,7 @@ class SnippetController {
  
     }
     public function update() {
-
+        
     }
 
     /**
@@ -118,7 +118,7 @@ class SnippetController {
             $sql = 'DELETE FROM snippets WHERE id = ? AND uid = ? LIMIT 1';
             $stmt = $this->dbh->prepare($sql);
             $stmt->execute(
-                [$id]
+                [$id, $_SESSION['user']->getId()]
             );
         }
     }

@@ -1,4 +1,4 @@
-<form action="./index.php?action=loginUser" method="post">
+<form action="./index.php?action=login-user" method="post">
     <input type="text" autocomplete="on" name="username" placeholder="Benutzername" id="username">
     <input type="password" autocomplete="on" name="password" placeholder="Passwort" id="password">
     <button>Login</button>

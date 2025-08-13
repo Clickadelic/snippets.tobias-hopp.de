@@ -25,43 +25,46 @@ switch ($action) {
         break;
 
     // === New Snippet ===
-    case 'newSnippet':
+    case 'create-snippet':
         $tpl = './templates/forms/snippet-form.tpl.php';
         break;
 
     // === Save Snippet ===
-    case 'saveSnippet':
+    case 'save-snippet':
         $post = filter_input_array(INPUT_POST);
         $snippet = new Snippet();
         $snippet->arrayToObject($post);
         $sc = new SnippetController($dbh);
         $sc->insert($snippet);
-        break;
-
-    // === View Snippet ===
-    case 'viewSnippet':
-        $sc = new SnippetController($dbh);
-        $snippet = $sc->findSnippetById($get['id']);
+        // Hat geklappt oder Weiterleitung
         // echo '<pre>';
         // var_dump($snippet);
         // echo '</pre>';
+        break;
+
+    // === View Snippet ===
+    case 'view-snippet':
+        $sc = new SnippetController($dbh);
+        $snippet = $sc->findSnippetById($get['id']);
         $tpl = "templates/view-snippet.tpl.php";
         break;
 
-    // === Save Snippet ===
-    case 'deleteSnippet':
-        
+    // === Delete Snippet ===
+    case 'delete-snippet':
+        $post = filter_input_array(INPUT_POST);
         $sc = new SnippetController($dbh);
-        $sc->insert($snippet);
+        $sc->delete($get['id']);
+        header("Location: index.php?message=snippet-deleted");
         break;
 
     // === Edit Snippet ===
-    case 'editSnippet':
+    case 'edit-snippet':
         $post = filter_input_array(INPUT_POST);
-        $snippet = new Snippet();
-        $snippet->arrayToObject($post);
+        // $snippet = new Snippet();
+        // $snippet->arrayToObject($post);
         $sc = new SnippetController($dbh);
-        $sc->insert($snippet);
+        $snippet = $sc->findSnippetById($get['id']);
+        $tpl = './templates/forms/snippet-form.tpl.php';
         break;
 
     // === Register page ===
@@ -75,7 +78,7 @@ switch ($action) {
         break;
     
     // === Login User ===
-    case 'loginUser':
+    case 'login-user':
         $post = filter_input_array(INPUT_POST);
         // in $user ist nun ein User Objekt mit den ganzen Daten aus der Datenbank
         // oder ein Null, falls kein User mit dem benutzernamen gefunden wurde
@@ -90,7 +93,7 @@ switch ($action) {
         break;
     
     // === Register User ===
-    case 'regUser':
+    case 'register-user':
         $post = filter_input_array(INPUT_POST);
         $user = new User();
         $user->arrayToObject($post);
@@ -101,7 +104,7 @@ switch ($action) {
         break;
 
     // === Logout User ===
-    case 'logout':
+    case 'logout-user':
         session_destroy();
         header('Location: index.php?action=logged-out');
         break;

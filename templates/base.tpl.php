@@ -23,14 +23,14 @@
                     if(isset($_SESSION['user'])) {
                         echo '<li><a href="./index.php?action=logout" title="Logout">Logout (' . $_SESSION['user']->getUsername() . ')</a></li>';
                     } else {
-                        echo '<li><a href="./index.php?action=register" title="Register">Register</a></li>';
+                        echo '<li><a href="./index.php?action=register-user" title="Register">Register</a></li>';
                         echo '<li><a href="./index.php?action=login" title="Login">Login</a></li>';
                     }
                     ?>
                 </ul>
             </nav>
         </header>
-        <?php if(isset($_GET['message'])) { echo '<div class="alert alert-warning"><p class="alert-message">' . $message . '</p></div>'; } ?>
+        <?php if(isset($_GET['message'])) { echo '<div class="alert alert-warning"><p class="alert-message">' . $_GET['message'] . '</p></div>'; } ?>
         <main>
             <?php if(isset($tpl)) { include $tpl; } ?>
         </main>
