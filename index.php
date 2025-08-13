@@ -24,6 +24,14 @@ switch ($action) {
         $tpl = 'home.tpl.php';
         break;
 
+    // === Save Snippet ===
+    case 'search':
+        $post = filter_input_array(INPUT_POST); // Formulardaten abgreifen
+        $search = $post['search'];
+        $sc = new SnippetController($dbh); // SnippetController erzeugen
+        $snippets = $sc->search($search); // Snippet an Query schicken
+        $tpl = './templates/home.tpl.php';
+        break;
     // === New Snippet ===
     case 'create-snippet':
         $tpl = './templates/forms/snippet-form.tpl.php';

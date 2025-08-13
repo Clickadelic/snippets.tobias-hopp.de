@@ -14,22 +14,27 @@
 </head>
 <body>
     <div class="container rounded" id="app">
-        <header class="flex justify-between">
-            <h1><a href="<?= $_SERVER['PHP_SELF']; ?>">Snippets</a></h1>
-            <nav>
-                <ul>
-                    <?php
-                    
-                    if(isset($_SESSION['user'])) {
-                        echo '<li><a href="./index.php?action=logout" title="Logout">Logout (' . $_SESSION['user']->getUsername() . ')</a></li>';
-                    } else {
-                        echo '<li><a href="./index.php?action=register-user" title="Register">Register</a></li>';
-                        echo '<li><a href="./index.php?action=login" title="Login">Login</a></li>';
-                    }
-                    ?>
-                </ul>
-            </nav>
-        </header>
+        <div>
+            <header class="flex justify-between">
+                <h1><a href="<?= $_SERVER['PHP_SELF']; ?>">Snippets</a></h1>
+                <nav>
+                    <ul>
+                        <?php
+                        if(isset($_SESSION['user'])) {
+                            echo '<li><a href="./index.php?action=logout" title="Logout">Logout (' . $_SESSION['user']->getUsername() . ')</a></li>';
+                        } else {
+                            echo '<li><a href="./index.php?action=register-user" title="Register">Register</a></li>';
+                            echo '<li><a href="./index.php?action=login" title="Login">Login</a></li>';
+                        }
+                        ?>
+                    </ul>
+                </nav>
+            </header>
+            <form class="search-form" method="post" action="./index.php?action=search">
+                <input type="search" name="search" placeholder="Suche" value="<?php echo isset($get['search']) ? $get['search'] : ''; ?>">
+                <button type="submit">Suchen</button>
+            </form>
+        </div>
         <?php
         if(isset($_GET['message'])){
             switch($_GET['message']) {

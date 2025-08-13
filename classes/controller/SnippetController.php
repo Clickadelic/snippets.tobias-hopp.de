@@ -142,4 +142,24 @@ class SnippetController {
         }
     }
 
+    public function search(string $search) {
+        $sql = "SELECT * FROM snippets WHERE title LIKE :search OR description LIKE :search OR code LIKE :search OR language LIKE :search OR tags LIKE :search";
+        $stmt = $this->dbh->prepare($sql);
+        $stmt->execute([
+            ":search"=> $search
+        ]);
+        $results = $stmt->fetchAll();
+        $uc = new UserController($this->dbh);
+ 
+        $snippets = [];
+        foreach($results as $result) {
+            $snippet = new Snippet(); // Instaziiert ein Snippetobjekt
+            $snippet->arrayToObject($result); // Befüllt das Objekt mit den Daten aus dem Array
+            $snippets[] = $snippet; // fügt das Snippet zum Array hinzu
+            $user = $uc->findById($result['uid']); // sucht den User, der das Snippet erstellt hat
+            $snippet->setUser($user); // setzt den User als Eigenschaft des Snippets
+        }
+        return $snippets;
+    }
+
 }
