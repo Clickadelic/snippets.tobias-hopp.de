@@ -103,6 +103,15 @@ class SnippetController {
         return $snippets;
  
     }
+
+    public function save(Snippet $snippet) {
+        if($snippet->getId() > 0) {
+            $this->update($snippet);
+        } else {
+            $this->insert($snippet);
+        }
+    }
+
     public function update(Snippet $snippet) {
         $sql = 'UPDATE snippets SET title = ?, description = ?, code = ?, language = ?, tags = ? WHERE id = ? AND uid = ? LIMIT 1';
         $stmt = $this->dbh->prepare($sql);
