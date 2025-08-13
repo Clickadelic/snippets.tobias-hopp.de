@@ -143,10 +143,12 @@ class SnippetController {
     }
 
     public function search(string $search) {
+        // where userId = $_SESSION['user']->getId()
+        // Kann noch mehr spezifiziert werden am Ende
         $sql = "SELECT * FROM snippets WHERE title LIKE :search OR description LIKE :search OR code LIKE :search OR language LIKE :search OR tags LIKE :search";
         $stmt = $this->dbh->prepare($sql);
         $stmt->execute([
-            ":search"=> $search
+            ":search"=> '%'. $search.'%'
         ]);
         $results = $stmt->fetchAll();
         $uc = new UserController($this->dbh);
