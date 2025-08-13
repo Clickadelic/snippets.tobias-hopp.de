@@ -30,10 +30,12 @@
                     </ul>
                 </nav>
             </header>
-            <form class="search-form" method="post" action="./index.php?action=search">
+            <?php if(isset($_SESSION['user'])) { ?>
+                <form class="search-form" method="post" action="./index.php?action=search">
                 <input type="search" name="search" placeholder="Suche" value="<?php echo isset($get['search']) ? $get['search'] : ''; ?>">
                 <button type="submit">Suchen</button>
             </form>
+            <?php } ?>
         </div>
         <?php
         if(isset($_GET['message'])){
