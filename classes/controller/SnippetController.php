@@ -78,6 +78,14 @@ class SnippetController {
  
     }
 
+    /**
+     * Saves a snippet to the database. If the snippet ID is greater than 0,
+     * it will be updated, otherwise it will be inserted.
+     *
+     * @param Snippet $snippet The snippet to be saved.
+     *
+     * @return void
+     */
     public function save(Snippet $snippet) {
         if($snippet->getId() > 0) {
             $this->update($snippet);
@@ -85,6 +93,15 @@ class SnippetController {
             $this->insert($snippet);
         }
     }
+
+    /**
+     * Updates an existing snippet in the database. The snippet will only be 
+     * updated if it belongs to the current user.
+     *
+     * @param Snippet $snippet The snippet object containing updated data.
+     *
+     * @return void
+     */
 
     public function update(Snippet $snippet) {
         $sql = 'UPDATE snippets SET title = ?, description = ?, code = ?, language = ?, tags = ? WHERE id = ? AND uid = ? LIMIT 1';
@@ -116,6 +133,15 @@ class SnippetController {
         }
     }
 
+    /**
+     * Searches for snippets in the database matching the given search term.
+     * The search is performed on the title, description, code, language, and tags fields.
+     * 
+     * @param string $search The search term to query against snippet fields.
+     * 
+     * @return Snippet[] An array of Snippet objects that match the search criteria.
+     */
+
     public function search(string $search) {
         // where userId = $_SESSION['user']->getId()
         // Kann noch mehr spezifiziert werden am Ende
@@ -129,6 +155,14 @@ class SnippetController {
         return $snippets;
     }
 
+    /**
+     * Maps a PDO result set to an array of Snippet objects, while also
+     * setting the user property of each snippet to the user who created it.
+     * 
+     * @param array $results A PDO result set where each row is a snippet.
+     * 
+     * @return Snippet[] An array of snippet objects.
+     */
     public function mapSnippetUser($results){
         $uc = new UserController($this->dbh);
  
